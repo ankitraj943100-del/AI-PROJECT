@@ -256,11 +256,14 @@ export const TaskKanban: React.FC<TaskKanbanProps> = ({
                       className="w-full p-2.5 rounded-xl glass-input text-sm bg-slate-900"
                     >
                       <option value="">Unassigned</option>
-                      {teamMembers.map((m) => (
-                        <option key={m.userId._id} value={m.userId._id}>
-                          {m.userId.name} ({m.role})
-                        </option>
-                      ))}
+                      {teamMembers.map((m) => {
+                        const uid = m.userId._id || m.userId.id;
+                        return (
+                          <option key={uid} value={uid}>
+                            {m.userId.name} ({m.role})
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                 )}

@@ -1,12 +1,13 @@
-import { Kafka, Partitioners } from 'kafkajs';
+import { Kafka, Partitioners, logLevel } from 'kafkajs';
 import { config } from './env';
 
 export const kafka = new Kafka({
   clientId: config.kafkaClientId,
   brokers: [config.kafkaBroker],
+  logLevel: logLevel.NOTHING,
   retry: {
-    initialRetryTime: 300,
-    retries: 3,
+    initialRetryTime: 100,
+    retries: 0, // Fail-fast so local fallback pipeline activates instantly without error logs
   },
 });
 
