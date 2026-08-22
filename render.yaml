@@ -4,7 +4,7 @@ services:
     name: pdf-orchestrator-backend
     env: docker
     rootDir: backend
-    dockerfilePath: Dockerfile
+    dockerfilePath: backend/Dockerfile
     plan: free
     envVars:
       - key: PORT
@@ -23,7 +23,7 @@ services:
     name: pdf-orchestrator-frontend
     env: docker
     rootDir: frontend
-    dockerfilePath: Dockerfile
+    dockerfilePath: frontend/Dockerfile
     plan: free
     envVars:
       - key: NEXT_PUBLIC_API_URL
