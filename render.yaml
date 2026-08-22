@@ -2,9 +2,9 @@ services:
   # Backend Express Web Service
   - type: web
     name: pdf-orchestrator-backend
-    env: docker
+    runtime: docker
     rootDir: backend
-    dockerfilePath: backend/Dockerfile
+    dockerfilePath: Dockerfile
     plan: free
     envVars:
       - key: PORT
@@ -21,9 +21,9 @@ services:
   # Frontend Next.js Web Service
   - type: web
     name: pdf-orchestrator-frontend
-    env: docker
+    runtime: docker
     rootDir: frontend
-    dockerfilePath: frontend/Dockerfile
+    dockerfilePath: Dockerfile
     plan: free
     envVars:
       - key: NEXT_PUBLIC_API_URL
