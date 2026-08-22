@@ -1,4 +1,12 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+export const getApiUrl = (): string => {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL;
+  }
+  if (typeof window !== 'undefined' && (window.location.hostname.includes('onrender.com') || window.location.protocol === 'https:')) {
+    return 'https://ai-project-1-lvg2.onrender.com';
+  }
+  return 'http://localhost:5000';
+};
 
 export const getAuthToken = (): string | null => {
   if (typeof window === 'undefined') return null;
@@ -14,6 +22,7 @@ export const removeAuthToken = () => {
 };
 
 export const fetchApi = async (endpoint: string, options: RequestInit = {}) => {
+  const API_URL = getApiUrl();
   const token = getAuthToken();
   const headers: Record<string, string> = {
     ...(options.headers as Record<string, string>),
