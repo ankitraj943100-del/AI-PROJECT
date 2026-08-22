@@ -34,6 +34,22 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/team', teamRoutes);
 app.use('/api/ai', aiRoutes);
 
+// Root API welcome endpoint
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    message: 'AI-Powered PDF Task & Summary Orchestrator API Backend is operational',
+    endpoints: {
+      health: '/health',
+      auth: '/api/auth',
+      documents: '/api/documents',
+      tasks: '/api/tasks',
+      team: '/api/team',
+      ai: '/api/ai',
+    },
+  });
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({
